@@ -30,7 +30,7 @@ detector = function()
             if distance < 8 then
                 ocelot = 1
                 if isthere == 1 and not bfm.checkperm() then
-                    if bfm.checkinv() or bfm.checkinv2() or vmelee or vgrenades or vresto then
+                    if bfm.checkinv() or bfm.checkinv2() or vmelee or  vgranadas or vresto then
                         Wait(300)
                         TriggerServerEvent('bfm:somzinholegal')
                         if notifysdetec then
