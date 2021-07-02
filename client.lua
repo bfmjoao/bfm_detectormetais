@@ -51,8 +51,6 @@ CreateThread(detector)
 
         
 atvdstv = function()
-    source = source
-    user_id = vRP.getUserId(source)
     if bfm.checkperm() then
         if notifysdetec then
             TriggerEvent('Notify', 'aviso', 'Notificações do detector desabilitadas!',4000)
