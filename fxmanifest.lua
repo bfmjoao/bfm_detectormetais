@@ -1,6 +1,6 @@
 --------------------------------
 -- DESENVOLVIDO POR bfm#7197
--- discord.gg/vD3tqUWKXv
+-- discord.gg/TwuEPcKXvr
 --------------------------------
 fx_version 'adamant'
 game 'gta5'
