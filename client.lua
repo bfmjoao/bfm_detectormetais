@@ -2,8 +2,6 @@
 -- bfm#7197
 -- discord.gg/vD3tqUWKXv
 --------------------------------
-vRP = Proxy.getInterface('vRP')
-
 bfm = Tunnel.getInterface(GetCurrentResourceName())
 
 local notifysDetec = true
