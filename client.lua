@@ -20,7 +20,7 @@ detector = function()
 
             if distance < 7 then
                 ocelot = 1
-                if isThere == 1 and not bfm.checkPerm() then
+                if isThere and not bfm.checkPerm() then
                     if bfm.checkInvCfg() or bfm.checkInvFrame() or vMelee or vGranadas or vResto then
                         Wait(300)
                         TriggerServerEvent('bfm:warningSound')
