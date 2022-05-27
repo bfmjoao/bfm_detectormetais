@@ -1,34 +1,23 @@
 --------------------------------
--- DESENVOLVIDO POR bfm#7197
--- discord.gg/TwuEPcKXvr
+-- bfm#7197
+-- discord.gg/vD3tqUWKXv
 --------------------------------
-local Tunnel = module("vrp","lib/Tunnel")
-local Proxy = module("vrp","lib/Proxy")
-vRP = Proxy.getInterface("vRP")
-vRPclient = Tunnel.getInterface("vRP")
+vRP = Proxy.getInterface('vRP')
+vRPc = Tunnel.getInterface('vRP')
 
 bfm = {}
 Tunnel.bindInterface(GetCurrentResourceName(),bfm)
 
-local notifypermissao = Config.notifypermissao
-local detectaveis = Config.detectaveis
-local notifypermissao = Config.notifypermissao
-local msgperm = Config.msgperm
-local somzinho = Config.somzinho
-
-RegisterServerEvent('bfm:somzinholegal')
-
-
-bfm.checkperm = function()
-    source = source
-    user_id = vRP.getUserId(source)
-    if vRP.hasPermission(user_id, notifypermissao) then
+bfm.checkPerm = function()
+    local user_id = vRP.getUserId(source)
+    if vRP.hasPermission(user_id, notifyPermissao) then
         return true
     end
     return false
 end
 
-bfm.checkinv = function()
+bfm.checkInvCfg = function()
+    local user_id = vRP.getUserId(source)
     for _,w in pairs(detectaveis) do
         if vRP.getInventoryItemAmount(user_id,w) >= 1 then
             return true
@@ -37,10 +26,10 @@ bfm.checkinv = function()
     return false
 end
 
-bfm.checkinv2 = function()
-    local wps = vRPclient.getWeapons(source)
+bfm.checkInvFrame = function()
+    local wps = vRPc.getWeapons(source)
     for k,v in pairs(wps) do
-        local wpuse = string.gsub(k,"wbody|","")
+        local wpuse = string.gsub(k,'wbody|','')
         if wps[wpuse] then
             return true
         end
@@ -48,15 +37,16 @@ bfm.checkinv2 = function()
     return false
 end
 
-bfm.notify = function()
-    for k,v in pairs(vRP.getUsersByPermission(notifypermissao)) do
-        TriggerClientEvent('Notify', v, 'aviso', msgperm,2000)
+bfm.notifyCops = function()
+    for k,v in next,vRP.getUsersByPermission(notifyPermissao) do
+        TriggerClientEvent('Notify', v, 'aviso', msgPerm)
     end
 end
 
-somzinholegalfunc = function()
-    if somzinho then
-        vRPclient.playSound(source,"Oneshot_Final","MP_MISSION_COUNTDOWN_SOUNDSET")
+warningSound = function()
+    if warningSnd then
+        vRPc.playSound(source,'Oneshot_Final','MP_MISSION_COUNTDOWN_SOUNDSET')
     end
 end
-AddEventHandler('bfm:somzinholegal', somzinholegalfunc)
+RegisterServerEvent('bfm:warningSound')
+AddEventHandler('bfm:warningSound', warningSound)

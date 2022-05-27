@@ -1,22 +1,21 @@
 --------------------------------
--- DESENVOLVIDO POR bfm#7197
--- discord.gg/TwuEPcKXvr
+-- bfm#7197
+-- discord.gg/vD3tqUWKXv
 --------------------------------
-fx_version 'adamant'
+fx_version 'cerulean'
 game 'gta5'
 
-author 'bfm - Ocelot™'
-contact 'Discord: discord.gg/vD3tqUWKXv - bfm#7197'
-version '1.0.7'
-
-client_scripts {
-	'@vrp/lib/utils.lua',
-	'config.lua',
-	'client.lua',
-}
+author 'bfm#7197'
+contact 'discord.gg/vD3tqUWKXv - bfm#7197'
 
 server_scripts {
-	'@vrp/lib/utils.lua',
+	'ocelot.lua',
 	'config.lua',
 	'server.lua',
+}
+
+client_scripts {
+	'ocelot.lua',
+	'config.lua',
+	'client.lua',
 }
