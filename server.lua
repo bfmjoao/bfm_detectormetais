@@ -3,7 +3,6 @@
 -- discord.gg/vD3tqUWKXv
 --------------------------------
 vRP = Proxy.getInterface('vRP')
-vRPc = Tunnel.getInterface('vRP')
 
 bfm = {}
 Tunnel.bindInterface(GetCurrentResourceName(),bfm)
