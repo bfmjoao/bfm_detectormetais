@@ -82,7 +82,7 @@ end
 checkInvCl = function()
     local wps = getWeapons()
     for k,v in next,wps do
-        local wpuse = string.gsub(k,'wbody|','')
+        local wpuse = k:gsub('wbody|','')
         if wps[wpuse] then
             return true
         end
