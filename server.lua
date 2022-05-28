@@ -18,19 +18,8 @@ end
 
 bfm.checkInvCfg = function()
     local user_id = vRP.getUserId(source)
-    for _,w in pairs(detectaveis) do
+    for _,w in next,detectaveis do
         if vRP.getInventoryItemAmount(user_id,w) >= 1 then
-            return true
-        end
-    end
-    return false
-end
-
-bfm.checkInvFrame = function()
-    local wps = vRPc.getWeapons(source)
-    for k,v in pairs(wps) do
-        local wpuse = string.gsub(k,'wbody|','')
-        if wps[wpuse] then
             return true
         end
     end
@@ -42,11 +31,3 @@ bfm.notifyCops = function()
         TriggerClientEvent('Notify', v, 'aviso', msgPerm)
     end
 end
-
-warningSound = function()
-    if warningSnd then
-        vRPc.playSound(source,'Oneshot_Final','MP_MISSION_COUNTDOWN_SOUNDSET')
-    end
-end
-RegisterServerEvent('bfm:warningSound')
-AddEventHandler('bfm:warningSound', warningSound)

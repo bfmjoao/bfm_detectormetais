@@ -20,10 +20,12 @@ detector = function()
 
             if distance < 7 then
                 ocelot = 1
-                if isThere and not bfm.checkPerm() then
-                    if bfm.checkInvCfg() or bfm.checkInvFrame() or vMelee or vGranadas or vResto then
+                if isThere == 1 and not bfm.checkPerm() then
+                    if bfm.checkInvCfg() or checkInvCl() or vMelee or vGranadas or vResto then
                         Wait(300)
-                        TriggerServerEvent('bfm:warningSound')
+                        if warningSnd then
+                            PlaySoundFrontend(-1,'Oneshot_Final','MP_MISSION_COUNTDOWN_SOUNDSET',false)
+                        end
                         if notifysDetec then
                             bfm.notifyCops()
                         end
@@ -40,16 +42,50 @@ detector = function()
 end
 CreateThread(detector)
 
+
+
 atvdstv = function()
     if bfm.checkPerm() then
         notifysDetec = not notifysDetec
         if not notifysDetec then
-            TriggerEvent('Notify', 'aviso', 'Notificações do detector desabilitadas!',4000)
+            TriggerEvent('Notify', 'aviso', 'Notificações do detector desabilitadas!')
         else
-            TriggerEvent('Notify', 'aviso', 'Notificações do detector habilitadas!',4000)
+            TriggerEvent('Notify', 'aviso', 'Notificações do detector habilitadas!')
         end
     else
-        TriggerEvent('Notify', 'aviso', 'Você não tem permissão para isso!',3000)
+        TriggerEvent('Notify', 'aviso', 'Você não tem permissão para isso!')
     end
 end
 RegisterCommand('notifydetec', atvdstv)
+
+getWeapons = function()
+	local player = PlayerPedId()
+	local ammo_types = {}
+	local weapons = {}
+	for k,v in next,weapon_types do
+		local hash = GetHashKey(v)
+		if HasPedGotWeapon(player,hash) then
+			local weapon = {}
+			weapons[v] = weapon
+			local atype = GetPedAmmoTypeFromWeapon(player,hash)
+			if ammo_types[atype] == nil then
+				ammo_types[atype] = true
+				weapon.ammo = GetAmmoInPedWeapon(player,hash)
+			else
+				weapon.ammo = 0
+			end
+		end
+	end
+	return weapons
+end
+
+checkInvCl = function()
+    local wps = getWeapons()
+    for k,v in next,wps do
+        local wpuse = string.gsub(k,'wbody|','')
+        if wps[wpuse] then
+            return true
+        end
+    end
+    return false
+end
