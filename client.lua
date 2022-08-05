@@ -7,13 +7,12 @@ bfm = Tunnel.getInterface(GetCurrentResourceName())
 local notifysDetec = true
 
 detectorThread = function()
-    local ped = PlayerPedId()
-
     repeat
         local ocelot = 1000
         
         for k,v in next,detectores do
-            local pedPos = GetEntityCoords(ped)
+		    local ped = PlayerPedId()
+          	local pedPos = GetEntityCoords(ped)
             local vMelee,vGranadas,vResto = IsPedArmed(ped,1),IsPedArmed(ped,2),IsPedArmed(ped,4)
             local isThere = IsEntityAtCoord(ped, v[1], v[2], v[3], 0.15, 2.5, 0.77, 0, 1, 0)
             local distance = #(pedPos - vec3(v[1], v[2], v[3]))
