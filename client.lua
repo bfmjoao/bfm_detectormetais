@@ -6,7 +6,7 @@ bfm = Tunnel.getInterface(GetCurrentResourceName())
 
 local notifysDetec = true
 
-detector = function()
+detectorThread = function()
     local ped = PlayerPedId()
 
     repeat
@@ -40,7 +40,7 @@ detector = function()
         Wait(ocelot)
     until false
 end
-CreateThread(detector)
+CreateThread(detectorThread)
 
 
 
