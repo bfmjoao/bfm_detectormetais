@@ -12,7 +12,6 @@ bfm.checkPerm = function()
     if vRP.hasPermission(user_id, notifyPermissao) then
         return true
     end
-    return false
 end
 
 bfm.checkInvCfg = function()
@@ -22,7 +21,6 @@ bfm.checkInvCfg = function()
             return true
         end
     end
-    return false
 end
 
 bfm.notifyCops = function()
